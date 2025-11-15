@@ -4,6 +4,7 @@ from discord.ext import commands
 from logic import gen_pass
 from game import MinesweeperGame
 
+token="token"
 PREFIX = "!"
 # ayricaliklar (intents) değişkeni botun ayrıcalıklarını depolayacak
 intents = discord.Intents.default()
@@ -12,6 +13,25 @@ intents.message_content = True
 # client (istemci) değişkeniyle bir bot oluşturalım ve ayrıcalıkları ona aktaralım
 bot = commands.Bot(command_prefix=PREFIX, intents=intents)
 aktif_oyunlar = {}
+
+class MyClient(discord.Client):
+    # Suppress error on the User attribute being None since it fills up later
+    user: discord.ClientUser
+
+    async def on_message(self, message):
+        if message.content.startswith('!deleteall'):
+            msg = await message.channel.send('I will delete myself now...')
+            await msg.delete()
+
+            # this also works
+            await message.channel.send('Goodbye in 3 seconds...', delete_after=3.0)
+
+    async def on_message_delete(self, message):
+        msg = f'{message.author} has deleted the message: {message.content}'
+        await message.channel.send(msg)
+
+client =MyClient(intents=intents)
+
 
 async def goster(message, g, mail):
     await message.channel.send(f"```\n{g.get_board_display(show_all=not g.is_playing)}\n```")
@@ -90,36 +110,5 @@ async def on_message(message):
     # Varsayılan: gelen mesajı aynen gönder
     await message.channel.send(message.content)
 
-@bot.command(name='temizle', aliases=['clear', 'sil'])
-@commands.has_permissions(manage_messages=True) # Bu komutu sadece "Mesajları Yönet" izni olanlar kullanabilir
-async def clear_messages(ctx, limit: int):
-    """
-    Belirtilen sayıdaki son mesajı kanaldan siler (Maksimum 100).
-    Kullanım: !temizle 50
-    """
-    
-    # Kendi komut mesajını sil
-    await ctx.message.delete()
-    
-    if limit > 100:
-        return await ctx.send("Hata: Tek seferde en fazla 100 mesaj silebilirsiniz.", delete_after=5)
-        
-    if limit <= 0:
-        return await ctx.send("Hata: Silinecek mesaj sayısı 1'den büyük olmalıdır.", delete_after=5)
-
-    try:
-        # Belirtilen sayıda mesajı sil (purge)
-        deleted = await ctx.channel.purge(limit=limit)
-        
-        # Kullanıcıya kaç mesaj silindiğini bildir
-        await ctx.send(f"✅ Başarılı! **{len(deleted)}** mesaj silindi.", delete_after=3)
-
-    except discord.Forbidden:
-        # Botun izni yoksa
-        await ctx.send("Hata: Botun bu kanalda 'Mesajları Yönet' izni yok.", delete_after=5)
-    except Exception as e:
-        # Diğer hatalar
-        print(f"Mesaj silme hatası: {e}")
-        await ctx.send("Beklenmedik bir hata oluştu.", delete_after=5)
-
-bot.run("MTQzNDYwMTc5Nzk1OTQxNzk2OQ.GY5fNo.xtqI6un457fxfDXiSk-LLtDyLH5PzrZ-UTpS2Q")
+bot.run(token)
+client.run(token)
