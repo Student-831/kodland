@@ -1,3 +1,4 @@
+# img_name=random.choice(os.listdir('image'))
 import os
 import discord
 from discord.ext import commands
@@ -37,6 +38,15 @@ async def goster(message, g, mail):
     await message.channel.send(f"```\n{g.get_board_display(show_all=not g.is_playing)}\n```")
     if mail:
         await message.channel.send(mail)
+
+@bot.command()
+async def mem(ctx):
+    with open('image/hmm.png', 'rb') as f:
+        # Dönüştürülen Discord kütüphane dosyasını bu değişkende saklayalım!
+        picture = discord.File(f)
+   # Daha sonra bu dosyayı bir parametre olarak gönderebiliriz!
+    await ctx.send(file=picture)
+
 
 @bot.event
 async def on_ready():
@@ -109,6 +119,7 @@ async def on_message(message):
 
     # Varsayılan: gelen mesajı aynen gönder
     await message.channel.send(message.content)
+
 
 bot.run(token)
 client.run(token)
