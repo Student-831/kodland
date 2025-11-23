@@ -2,7 +2,7 @@ import os
 import discord
 from discord.ext import commands
 
-token="MTQzOTY3NjgxMDExOTA5MDE3OA.GcaKqI.tFM7MMqUOzz3ShA2mXiIRcYAxE4x6kArTQO1kM"
+token="token"
 PREFIX = "!"
 # ayricaliklar (intents) değişkeni botun ayrıcalıklarını depolayacak
 intents = discord.Intents.default()

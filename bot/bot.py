@@ -5,7 +5,7 @@ from discord.ext import commands
 from logic import gen_pass
 from game import MinesweeperGame
 
-token="MTQzNDYwMTc5Nzk1OTQxNzk2OQ.GeDG7K.eu-zZiif4cXLWDYOxJy8e7CPP91o5_7Yw4tqn4"
+token="token"
 PREFIX = "!"
 # ayricaliklar (intents) değişkeni botun ayrıcalıklarını depolayacak
 intents = discord.Intents.default()
