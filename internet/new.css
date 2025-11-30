@@ -1,0 +1,25 @@
+body {
+    font-family: 'Arial Black', sans-serif; /* Yazı tipi ailesi */
+    font-size: 15px; /* <p></p> etiketindeki ana yazının boyutu */
+    background-color: #f0f0f0; /* Web sayfasının arka plan rengi */
+    color: #333333; /* Metin rengi */
+    background-color: #0a0041;
+}
+
+h1 {
+    color: #5c0101; /* Başlık rengi */
+    font-size: 28px; /* Başlık yazı tipi boyutu */
+    font-family: Monospace, serif; /* Başlıkta kullanılan yazı tipi ailesi */
+}
+
+li{
+    font-size: 20px;
+}
+
+ul { 
+    list-style-type: square; /
+}
+
+h2{
+    padding-left: 24px;
+}
