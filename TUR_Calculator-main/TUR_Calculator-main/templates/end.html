@@ -29,10 +29,14 @@
         <img class="rez__img" src="../../static/img/planet_medium.svg" alt="">
         <span>Sonucunuz {{result}} kWh</span>
         <span>Evınızın enerji verimliliği orta düzeydedir!</span>
+        <span>Çevreyi korumaya yardımcı olmak ister misiniz? Formu doldurun ve sizin için çevre dostu bir tesisat oluşturalım!</span>
+        <a href="{{ url_for('form') }}">Formu doldurun</a>
         {%elif result >= 300%}
         <img class="rez__img" src="../../static/img/planet_bad.svg" alt="">
         <span>Sonucunuz {{result}} kWh</span>
         <span>Evınızın enerji verimliliği ortalamadan düşüktür!</span>
+        <span>Çevreyi korumaya yardımcı olmak ister misiniz? Formu doldurun ve sizin için çevre dostu bir tesisat oluşturalım!</span>
+        <a href="{{ url_for('form') }}">Formu doldurun</a>
         {%endif%}
     </div>
     {% endblock %}

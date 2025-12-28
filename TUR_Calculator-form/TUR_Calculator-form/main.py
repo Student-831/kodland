@@ -51,17 +51,11 @@ def form():
 def submit_form():
     # Veri toplama için değişkenleri tanımlayın
     name = request.form['name']
-    email = request.form['email']
-    address = request.form['address']
-    date = request.form['date']
 
     # Verilerinizi kaydedebilir veya e-posta ile gönderebilirsiniz
     return render_template('form_result.html', 
                            # Değişkenleri buraya yerleştirin
                            name=name,
-                            email=email,
-                            address=address,
-                            date=date
                            )
 
 app.run(debug=True)

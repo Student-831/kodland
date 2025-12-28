@@ -1,0 +1,18 @@
+<!-- Kullanıcının verilerini çıktı olarak gösteren bir sayfa oluşturun -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+    <h1>Kullanıcı Bilgileri</h1>
+    <p><strong>Ad:</strong> {{ name }}</p>
+    <p><strong>E-posta:</strong> {{ email }}</p>
+    <p><strong>Adres:</strong> {{ address }}</p>
+    <p><strong>Tarih:</strong> {{ date }}</p>
+    {% endblock %}
+</body>
+</html>
